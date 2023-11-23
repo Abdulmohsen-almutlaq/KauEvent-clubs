@@ -21,7 +21,7 @@ jobs:
       # Run tests
       - run:
           name: Run Tests
-          command: java -cp .:/usr/local/lib/* testing.AdminTest.java
+          command: java -cp .:/usr/local/lib/* testing.AdminTest
 
 workflows:
   version: 2
