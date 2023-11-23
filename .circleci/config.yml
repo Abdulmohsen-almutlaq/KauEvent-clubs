@@ -18,11 +18,6 @@ jobs:
             cp sqljdbc42.jar /usr/local/lib/
             cp junit-4.13.2-javadoc.jar /usr/local/lib/
 
-      # Compile your Java project (if needed)
-      - run:
-          name: Compile Project
-          command: javac -cp /usr/local/lib/*:. src/*.java
-
       # Run tests
       - run:
           name: Run Tests
