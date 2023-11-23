@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 public class AdminTest {
 
-    private static final String TEST_EVENT_NAME = "TestEvent";
+    private static final String TEST_EVENT_NAME = "TestEvenT";
     private static final String TEST_UPDATED_EVENT_NAME = "UpdatedTestEvent";
     private static final String TEST_CLUB_CODE = "65";
     private static final String TEST_UPDATED_CLUB_CODE = "53";
