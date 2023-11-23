@@ -21,7 +21,7 @@ jobs:
       # Compile the code and tests
       - run:
           name: Compile Project and Tests
-          command: javac -cp .:/usr/local/lib/* src/testing/Student.java src/testing/StudentTest.java
+          command: javac -cp .:/usr/local/lib/* src/testing/Student.java test/testing/StudentTest.java
 
       # Run tests
       - run:
