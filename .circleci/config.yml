@@ -21,7 +21,11 @@ jobs:
       # Run tests
       - run:
           name: Run Tests
-          command: java -cp .:/usr/local/lib/* test/testing/AdminTest
+           command: |
+      ls -R  # List files recursively to verify directory structure
+      echo "Current directory: $(pwd)"
+      java -version  # Display Java version for debugging
+      java -cp .:/usr/local/lib/* test.testing.AdminTest
 
 workflows:
   version: 2
