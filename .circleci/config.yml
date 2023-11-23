@@ -18,27 +18,22 @@ jobs:
             cp lib/sqljdbc42.jar /usr/local/lib/
             cp lib/junit_4/junit-4.12.jar /usr/local/lib/
 
-      # Compile the code and tests
-      - run:
-          name: Compile Project and Tests
-          command: javac -cp .:/usr/local/lib/* src/testing/Student.java test/testing/StudentTest.java
+  run-tests:
+    docker:
+      - image: openjdk:8  # Use an OpenJDK 8 image
+    steps:
+      - checkout
 
       # Run tests
       - run:
           name: Run Tests
-          command: java -cp .:/usr/local/lib/*:/usr/local/lib/junit_4/junit-4.12.jar:/usr/local/lib/hamcrest-core-1.3-javadoc.jar:/usr/local/lib/jcalendar-1.4.jar:/usr/local/lib/sqljdbc42.jar org.junit.runner.JUnitCore test.testing.StudentTest
+          command: java -cp .:/usr/local/lib/*:/usr/local/lib/junit-4.12.jar:/usr/local/lib/hamcrest-core-1.3-javadoc.jar:/usr/local/lib/jcalendar-1.4.jar:/usr/local/lib/sqljdbc42.jar org.junit.runner.JUnitCore testing.StudentTest
 
 workflows:
   version: 2
   build-workflow:
     jobs:
       - build
-
-# Define when to trigger the workflow
-# In this case, trigger on every push to the master branch
-# You can adjust this based on your needs
-triggers:
-  - push:
-      branches:
-        only:
-          - master
+      - run-tests:
+          requires:
+            - build
