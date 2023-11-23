@@ -27,7 +27,7 @@ jobs:
       - run:
       
           name: Run Tests
-          command: java -cp .:/usr/local/lib/junit_4/junit-4.12.jar:/usr/local/lib/hamcrest/hamcrest-core-1.3.jar:/usr/local/lib/jcalendar-1.4.jar:/usr/local/lib/sqljdbc42.jar testing.StudentTest
+          command: java -cp .:/usr/local/lib/junit_4/junit-4.12.jar:/usr/local/lib/hamcrest/hamcrest-core-1.3.jar:/usr/local/lib/jcalendar-1.4.jar:/usr/local/lib/sqljdbc42.jar java testing.StudentTest
 
 workflows:
   version: 2
