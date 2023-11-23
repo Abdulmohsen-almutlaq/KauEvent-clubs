@@ -12,7 +12,7 @@ public class StudentTest {
 
     private static final String VALID_KAU_ID = "2135011";
     private static final String VALID_PASSWORD = "12345";
-    private static final String INVALID_KAU_ID = "2135010";
+    private static final String INVALID_KAU_ID = "2135710";
     private static final String INVALID_PASSWORD = "1234";
 
     private static final String TEST_ID = "2135011";
