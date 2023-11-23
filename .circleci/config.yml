@@ -26,7 +26,7 @@ jobs:
       # Run tests
       - run:
           name: Run Tests
-          command: java -cp .:/usr/local/lib/* org.junit.runner.JUnitCore test.testing.StudentTest
+          command: java -cp .:/usr/local/lib/*:/usr/local/lib/junit-4.13.2-javadoc.jar org.junit.runner.JUnitCore test.testing.StudentTest
 
 workflows:
   version: 2
