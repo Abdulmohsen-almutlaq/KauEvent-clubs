@@ -18,13 +18,15 @@ jobs:
             cp sqljdbc42.jar /usr/local/lib/
             cp junit-4.13.2-javadoc.jar /usr/local/lib/
 
-      # Compile the code
+      # Compile the code and tests
       - run:
-          name: Compile Project
-          command: javac src/testing/Student.java
+          name: Compile Project and Tests
+          command: javac -cp .:/usr/local/lib/* src/testing/Student.java test/testing/StudentTest.java
 
-      # Run tests (if you have any JUnit tests)
-      # ...
+      # Run tests
+      - run:
+          name: Run Tests
+          command: java -cp .:/usr/local/lib/* org.junit.runner.JUnitCore test.testing.StudentTest
 
 workflows:
   version: 2
