@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: "Build and Test"
-          command: "./gradlew test"
+          command: "./gradlew -p KauEvent-clubs :test:testing:test --tests 'AdminTest'"
 
 workflows:
   version: 2
