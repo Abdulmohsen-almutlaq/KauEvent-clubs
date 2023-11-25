@@ -18,10 +18,15 @@ jobs:
       - image: maven:3.6-jdk-8  # Use a Maven image with JDK 8
     steps:
       - checkout
+
       # Run tests using Maven
       - run:
           name: Run Tests
           command: mvn test
+
+      # Store test results
+      - store_test_results:
+          path: target/surefire-reports  # Adjust the path based on your Maven project structure
 
 workflows:
   version: 2
