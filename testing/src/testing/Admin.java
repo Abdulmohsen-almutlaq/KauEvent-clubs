@@ -188,7 +188,7 @@ public static boolean updateEventInDatabase(String eventName, String newEventNam
                 }
             }
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace(); // Log the exception or handle it as needed
+            System.out.println(e.getMessage());// Log the exception or handle it as needed
             return false;
         }
     }
@@ -207,7 +207,7 @@ public static boolean updateEventInDatabase(String eventName, String newEventNam
                 }
             }
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace(); // Log the exception or handle it as needed
+            System.out.println(e.getMessage());
             return false;
         }
     }
