@@ -19,6 +19,15 @@ jobs:
     steps:
       - checkout
 
+      # Set up environment variables
+      - run:
+          name: Set up environment
+          command: |
+            echo "DB_URL=jdbc:sqlserver://0.tcp.in.ngrok.io:19824;databaseName=KAU_Events_Clubs;user=sa;password=12345" >> $BASH_ENV
+            echo "DB_USER=sa" >> $BASH_ENV
+            echo "DB_PASSWORD=12345" >> $BASH_ENV
+            source $BASH_ENV
+
       # Run tests using Maven
       - run:
           name: Run Tests
