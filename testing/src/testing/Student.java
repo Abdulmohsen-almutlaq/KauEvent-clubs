@@ -54,7 +54,8 @@ public class Student {
                 }
             }
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace(); // Handle or log the exception as needed
+            System.out.println(e.getMessage());
+            return false;
         }
         return false;
     }
@@ -73,9 +74,8 @@ public class Student {
                 return true;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return false;
-            // Handle the exception appropriately based on your application's needs
         }
     }
         public static boolean deleteEvent(String KAU_ID, String eventNum) {
@@ -87,8 +87,7 @@ public class Student {
                 return pst.executeUpdate() > 0;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            // Handle the exception appropriately based on your application's needs
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -109,7 +108,7 @@ public class Student {
                 System.out.println("Club enrollment already exists!");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             // Handle the exception appropriately based on your application's needs
         }
         return false;
@@ -129,8 +128,8 @@ public class Student {
                 System.out.println("Club enrollment does not exist!");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            // Handle the exception appropriately based on your application's needs
+            System.out.println(e.getMessage());
+            return false;
         }
         return false;
     }
