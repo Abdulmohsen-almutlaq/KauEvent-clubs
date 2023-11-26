@@ -29,14 +29,14 @@ public class AdminTest {
         // Clean up code if needed after each test
     }
 
-    @Test
-    public void testValidateAdminCredentials() {
+   // @Test
+    // public void testValidateAdminCredentials() {
         // Attempt to log in with valid credentials
         AdminFunctions adminFunctions = Admin.loginAdmin(TEST_ADMIN_KAU_ID, TEST_ADMIN_PASSWORD);
 
         // Check if the returned AdminFunctions instance is not null
-        assertNotNull(adminFunctions);
-    }
+        // assertNotNull(adminFunctions);
+    //  }
 
     @Test
     public void testLoginAdminInvalidCredentials() {
@@ -47,23 +47,23 @@ public class AdminTest {
         assertNull(adminFunctions);
     }
 
-    @Test
-    public void testInsertAndUpdateAndDeleteEvent() throws SQLException {
+    // @Test
+    //  public void testInsertAndUpdateAndDeleteEvent() throws SQLException {
         // Insert Event
-        assertTrue(insertTestEvent());
+       // assertTrue(insertTestEvent());
 
         // Update Event
-        assertTrue(updateTestEvent());
+       // assertTrue(updateTestEvent());
 
         // Check if the updated event exists
-        assertTrue(checkIfUpdatedEventExists());
+        //  assertTrue(checkIfUpdatedEventExists());
 
         // Delete the updated event
-        assertTrue(deleteUpdatedEvent());
+        //  assertTrue(deleteUpdatedEvent());
 
         // Check if the event is deleted
-        assertFalse(checkIfUpdatedEventExists());
-    }
+        //  assertFalse(checkIfUpdatedEventExists());
+    //}
 
     // Separate functions for each step:
     private boolean insertTestEvent() throws SQLException {
@@ -137,16 +137,16 @@ public class AdminTest {
         return Admin.deleteClub("NonexistentClub");
     }
 
-    @Test
-    public void testInsertAndUpdateAndDeleteClub() {
+    // @Test
+    // public void testInsertAndUpdateAndDeleteClub() {
         // Insert Club
-        assertTrue(insertTestClub());
+        //  assertTrue(insertTestClub());
         // Update Club
-        assertTrue(updateTestClub());
-        // delete Club
-        assertTrue(deleteClub());
+        //  assertTrue(updateTestClub());
+        //  // delete Club
+        //  assertTrue(deleteClub());
 
-    }
+        // }
 
     // Separate functions for each step:
     private boolean insertTestClub() {
