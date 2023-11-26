@@ -16,8 +16,14 @@ jobs:
             echo "DB_PASSWORD=12345" >> $BASH_ENV
             source $BASH_ENV
 
+      # Build the project using Maven
       - run:
-          name: Run tests
+          name: Build Project
+          command: mvn clean install
+
+      # Run tests using Maven
+      - run:
+          name: Run Tests
           command: mvn test
           environment:
             NGROK_URL: $NGROK_URL
