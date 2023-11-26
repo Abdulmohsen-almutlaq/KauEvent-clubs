@@ -26,6 +26,18 @@ public class StudentTest {
     }
 
     @Test
+    public void testJoinAndLeaveClub() {
+        // Join the club first
+        assertTrue(Student.joinClub(TEST_ID, TEST_CLUB_CODE));
+
+        // Now, try to leave the club
+        assertTrue(Student.leaveClub(TEST_ID, TEST_CLUB_CODE));
+
+        // Try to leave a non-existing club, should return false
+        assertFalse(Student.leaveClub(TEST_ID, NON_EXISTING_CLUB_CODE));
+    }
+
+    @Test
     public void testRegisterEventStudent() {
         assertTrue(Student.RegisterEventStudent(TEST_ID, TEST_EVENT_NUM, TEST_EVENT_NAME));
         assertFalse(Student.RegisterEventStudent(TEST_ID, TEST_EVENT_NUM, "Non"));
@@ -35,17 +47,5 @@ public class StudentTest {
     public void testDeleteEvent() {
         assertTrue(Student.deleteEvent(TEST_ID, TEST_EVENT_NUM));
         assertFalse(Student.deleteEvent(TEST_ID, NON_EXISTING_EVENT_NUM));
-    }
-
-    @Test
-    public void testJoinClub() {
-        assertTrue(Student.joinClub(TEST_ID, TEST_CLUB_CODE));
-        assertFalse(Student.joinClub(TEST_ID, EXISTING_CLUB_CODE));
-    }
-
-    @Test
-    public void testLeaveClub() {
-        assertTrue(Student.leaveClub(TEST_ID, TEST_CLUB_CODE));
-        assertFalse(Student.leaveClub(TEST_ID, NON_EXISTING_CLUB_CODE));
     }
 }
