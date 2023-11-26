@@ -109,7 +109,7 @@ public class Student {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            // Handle the exception appropriately based on your application's needs
+            return false;
         }
         return false;
     }
