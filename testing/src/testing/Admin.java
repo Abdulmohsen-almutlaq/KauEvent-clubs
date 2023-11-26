@@ -5,9 +5,7 @@ import java.sql.*;
 public class Admin {
 
     private static final String JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static final String NGROK_URL = System.getenv("NGROK_URL");
-    private static final String DB_USER = System.getenv("DB_USER");
-    private static final String DB_PASSWORD = System.getenv("DB_PASSWORD");
+    private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=KAU_Events_Clubs;user=sa;password=12345";
     private static String admin_KAU_ID;
 
     /**
@@ -20,7 +18,7 @@ public class Admin {
     public static boolean validateAdmin(String admin_KAU_ID, String adminPassword) {
         try {
             Class.forName(JDBC_DRIVER);
-            try ( Connection con = DriverManager.getConnection(NGROK_URL, DB_USER, DB_PASSWORD)) {
+            try (Connection con = DriverManager.getConnection(DB_URL)) {
                 String sql = "SELECT * FROM AdminBase WHERE admin_KAU_ID=? AND adminPassword=?";
                 try (PreparedStatement pst = con.prepareStatement(sql)) {
                     pst.setString(1, admin_KAU_ID);
@@ -47,7 +45,7 @@ public boolean insertEvent(String eventName, String eventDescription, java.util.
         Class.forName(JDBC_DRIVER);
 
         // Establish a connection to the database
-        try ( Connection con = DriverManager.getConnection(NGROK_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection con = DriverManager.getConnection(DB_URL)) {
             // Define the SQL query for event insertion
             String query = "insert into eventBase (eventName, eventDescription, eventDate, Admin_ID) values (?, ?, ?, ?)";
 
@@ -80,7 +78,7 @@ public boolean insertEvent(String eventName, String eventDescription, java.util.
 public static boolean deleteEventFromDatabase(String eventName) {
     try {
         Class.forName(JDBC_DRIVER);
-        try ( Connection con = DriverManager.getConnection(NGROK_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection con = DriverManager.getConnection(DB_URL)) {
             String query = "DELETE FROM eventBase WHERE eventName = ?";
 
             try (PreparedStatement pst = con.prepareStatement(query)) {
@@ -100,7 +98,7 @@ public static boolean deleteEventFromDatabase(String eventName) {
 public static boolean updateEventInDatabase(String eventName, String newEventName, String eventDescription, java.util.Date eventDate, String adminID) {
     try {
         Class.forName(JDBC_DRIVER);
-        try ( Connection con = DriverManager.getConnection(NGROK_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection con = DriverManager.getConnection(DB_URL)) {
             String query = "UPDATE eventBase SET eventName=?, eventDescription=?, eventDate=?, Admin_ID=? WHERE eventName=?";
 
             try (PreparedStatement pst = con.prepareStatement(query)) {
@@ -126,7 +124,7 @@ public static boolean updateEventInDatabase(String eventName, String newEventNam
     public boolean checkIfEventExistsInTable(String eventName) throws SQLException {
         try {
             Class.forName(JDBC_DRIVER);
-            try ( Connection con = DriverManager.getConnection(NGROK_URL, DB_USER, DB_PASSWORD)) {
+            try (Connection con = DriverManager.getConnection(DB_URL)) {
                 String query = "SELECT * FROM eventBase WHERE eventName=?";
                 try (PreparedStatement pst = con.prepareStatement(query)) {
                     pst.setString(1, eventName);
@@ -145,7 +143,7 @@ public static boolean updateEventInDatabase(String eventName, String newEventNam
     public static boolean insertClub(String clubCode, String clubName, String clubDescription, Date clubFounded) {
         try {
             Class.forName(JDBC_DRIVER);
-            try ( Connection con = DriverManager.getConnection(NGROK_URL, DB_USER, DB_PASSWORD)) {
+            try (Connection con = DriverManager.getConnection(DB_URL)) {
                 String query = "insert into clubBase (clubCode,clubName,clubDescription,clubFounded)values(?,?,?,?)";
 
                 try (PreparedStatement pst = con.prepareStatement(query)) {
@@ -171,7 +169,7 @@ public static boolean updateEventInDatabase(String eventName, String newEventNam
     public static  boolean updateClub(String clubCode, String newClubCode, String clubName, String clubDescription, Date clubFounded) {
         try {
             Class.forName(JDBC_DRIVER);
-            try ( Connection con = DriverManager.getConnection(NGROK_URL, DB_USER, DB_PASSWORD)) {
+            try (Connection con = DriverManager.getConnection(DB_URL)) {
                 String query = "UPDATE clubBase SET clubCode=?, clubName=?, clubDescription=?, clubFounded=? WHERE clubCode=?";
 
                 try (PreparedStatement pst = con.prepareStatement(query)) {
@@ -198,7 +196,7 @@ public static boolean updateEventInDatabase(String eventName, String newEventNam
     public static boolean deleteClub(String clubCode) {
         try {
             Class.forName(JDBC_DRIVER);
-            try ( Connection con = DriverManager.getConnection(NGROK_URL, DB_USER, DB_PASSWORD)) {
+            try (Connection con = DriverManager.getConnection(DB_URL)) {
                 String query = "DELETE FROM clubBase WHERE clubCode=?";
                 try (PreparedStatement pst = con.prepareStatement(query)) {
                     pst.setString(1, clubCode);

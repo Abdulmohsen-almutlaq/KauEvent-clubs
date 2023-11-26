@@ -11,9 +11,7 @@ import java.util.Calendar;
 public class Student {
 
     private static final String JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static final String NGROK_URL = System.getenv("NGROK_URL");
-    private static final String DB_USER = System.getenv("DB_USER");
-    private static final String DB_PASSWORD = System.getenv("DB_PASSWORD");
+    private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=KAU_Events_Clubs;user=sa;password=12345";
     private static String KAU_ID;
     private static String studentName;
     // Constructor
@@ -38,7 +36,7 @@ public class Student {
     public static boolean validateStudent(String KAU_ID, String password) {
         try {
             Class.forName(JDBC_DRIVER);
-            try ( Connection con = DriverManager.getConnection(NGROK_URL, DB_USER, DB_PASSWORD)) {
+            try (Connection con = DriverManager.getConnection(DB_URL)) {
                 String sql = "SELECT * FROM student WHERE KAU_ID=? AND password=?";
                 try (PreparedStatement pst = con.prepareStatement(sql)) {
                     pst.setString(1, KAU_ID);
@@ -63,7 +61,7 @@ public class Student {
     }
 
     public static boolean RegisterEventStudent(String ID, String eventNum, String eventName) {
-        try ( Connection con = DriverManager.getConnection(NGROK_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection con = DriverManager.getConnection(DB_URL)) {
             java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 
             String query = "INSERT INTO studentEvents (KAU_ID, eventNum, eventName) VALUES (?, ?, ?)";
@@ -81,7 +79,7 @@ public class Student {
         }
     }
         public static boolean deleteEvent(String KAU_ID, String eventNum) {
-        try ( Connection con = DriverManager.getConnection(NGROK_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection con = DriverManager.getConnection(DB_URL)) {
             String query = "DELETE FROM studentEvents WHERE KAU_ID = ? AND eventNum = ?";
             try (PreparedStatement pst = con.prepareStatement(query)) {
                 pst.setString(1, KAU_ID);
@@ -94,7 +92,7 @@ public class Student {
         }
     }
    public static boolean joinClub(String KAU_ID, String clubCode) {
-        try ( Connection con = DriverManager.getConnection(NGROK_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection con = DriverManager.getConnection(DB_URL)) {
             Date joinDate = new Date(Calendar.getInstance().getTime().getTime());
 
             if (!isClubEnrollmentExists(con, KAU_ID, clubCode)) {
@@ -111,13 +109,13 @@ public class Student {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            return false;
+            // Handle the exception appropriately based on your application's needs
         }
         return false;
     }
 
     public static boolean leaveClub(String KAU_ID, String clubCode) {
-        try ( Connection con = DriverManager.getConnection(NGROK_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection con = DriverManager.getConnection(DB_URL)) {
             if (isClubEnrollmentExists(con, KAU_ID, clubCode)) {
                 String query = "DELETE FROM studentClubs WHERE KAU_ID = ? AND clubCode = ?";
                 try (PreparedStatement pst = con.prepareStatement(query)) {

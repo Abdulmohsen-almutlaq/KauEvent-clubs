@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: maven:3.6-jdk-8
+      - image: maven:3.6-jdk-8  # Use a Maven image with JDK 8
 
     steps:
       - checkout
@@ -15,31 +15,13 @@ jobs:
 
   run-tests:
     docker:
-      - image: maven:3.6-jdk-8
+      - image: maven:3.6-jdk-8  # Use a Maven image with JDK 8
     steps:
       - checkout
-
-      # Set up environment variables
-      - run:
-          name: Set up environment
-          command: |
-            echo "export NGROK_URL=tcp://0.tcp.in.ngrok.io:17169" >> $BASH_ENV
-            echo "export DB_USER=sa" >> $BASH_ENV
-            echo "export DB_PASSWORD=12345" >> $BASH_ENV
-            source $BASH_ENV
-
       # Run tests using Maven
       - run:
           name: Run Tests
           command: mvn test
-          environment:
-            NGROK_URL: $NGROK_URL
-            DB_USER: $DB_USER
-            DB_PASSWORD: $DB_PASSWORD
-
-      # Store test results
-      - store_test_results:
-          path: target/surefire-reports
 
 workflows:
   version: 2
