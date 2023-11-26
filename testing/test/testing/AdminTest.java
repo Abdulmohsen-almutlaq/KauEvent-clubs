@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AdminTest {
 
@@ -31,20 +32,13 @@ public class AdminTest {
 
      @Test
       public void testValidateAdminCredentials() {
-          //Attempt to log in with valid credentials
-        AdminFunctions adminFunctions = Admin.loginAdmin(TEST_ADMIN_KAU_ID, TEST_ADMIN_PASSWORD);
+         assertTrue(Admin.validateAdmin(TEST_ADMIN_KAU_ID,TEST_ADMIN_PASSWORD));
 
-          //Check if the returned AdminFunctions instance is not null
-          assertNotNull(adminFunctions);
        }
 
     @Test
     public void testLoginAdminInvalidCredentials() {
-          //Attempt to log in with invalid credentials
-        AdminFunctions adminFunctions = Admin.loginAdmin("777", "345");
-
-        //  Check if the returned AdminFunctions instance is null
-        assertNull(adminFunctions);
+        assertFalse(Admin.validateAdmin(TEST_ADMIN_KAU_ID,"9999"));
     }
 
      @Test
