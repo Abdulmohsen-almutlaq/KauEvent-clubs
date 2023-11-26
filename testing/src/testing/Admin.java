@@ -5,7 +5,7 @@ import java.sql.*;
 public class Admin {
 
     private static final String JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=KAU_Events_Clubs;user=sa;password=12345";
+    private static final String DB_URL = "jdbc:sqlserver://sleman20.database.windows.net:1433;database=KAU_EVENT_AZURE;user=CloudSA8549a509@sleman20;password={Break2020};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
     private static String admin_KAU_ID;
 
     /**

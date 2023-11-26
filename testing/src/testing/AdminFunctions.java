@@ -36,6 +36,7 @@ public class AdminFunctions extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        addEvent.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         addEvent.setText("Add,Delete,Update");
         addEvent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -43,6 +44,7 @@ public class AdminFunctions extends javax.swing.JFrame {
             }
         });
 
+        addClub.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         addClub.setText("Add,Delete,Update");
         addClub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,6 +52,7 @@ public class AdminFunctions extends javax.swing.JFrame {
             }
         });
 
+        showAllEvents.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         showAllEvents.setText("show all Events");
         showAllEvents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,6 +60,7 @@ public class AdminFunctions extends javax.swing.JFrame {
             }
         });
 
+        showAllClubs.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         showAllClubs.setText("show all Clubs");
         showAllClubs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,8 +68,10 @@ public class AdminFunctions extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setText("Events");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel2.setText("Clubs");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -73,38 +79,38 @@ public class AdminFunctions extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(addClub, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                    .addComponent(addClub, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                     .addComponent(addEvent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(84, 84, 84)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(showAllClubs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(showAllEvents, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
-                .addGap(24, 24, 24))
+                    .addComponent(showAllEvents, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
             .addGroup(layout.createSequentialGroup()
-                .addGap(273, 273, 273)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(397, 397, 397)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(432, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel2)
-                .addGap(47, 47, 47)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addClub, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(showAllClubs, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel1)
-                .addGap(44, 44, 44)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(showAllEvents, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(118, Short.MAX_VALUE))
+                    .addComponent(showAllEvents, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,34 +118,51 @@ public class AdminFunctions extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEventActionPerformed
-
-        addUpdateDeleteEvent field = new addUpdateDeleteEvent();
-        field.setVisible(true);
-        setVisible(false);
-
-
+        
+        
+        
+                   addUpdateDeleteEvent field= new addUpdateDeleteEvent();
+                   field.setVisible(true);
+                   setVisible(false);
+             
+        
+        
+        
+        
+        
     }//GEN-LAST:event_addEventActionPerformed
 
     private void showAllEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllEventsActionPerformed
-        showEventData screen = new showEventData();
-        screen.setVisible(true);
-        setVisible(false);
-
-
+showEventData screen=new showEventData();
+screen.setVisible(true);
+setVisible(false);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_showAllEventsActionPerformed
 
     private void addClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClubActionPerformed
-        insertUpdateDeleteClub screen = new insertUpdateDeleteClub();
+        insertUpdateDeleteClub screen =new insertUpdateDeleteClub();
         screen.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_addClubActionPerformed
 
     private void showAllClubsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllClubsActionPerformed
-        showClubData screen = new showClubData();
+              showClubData screen =new showClubData();
         screen.setVisible(true);
         setVisible(false);
-
-
+        
+        
+        
+        
     }//GEN-LAST:event_showAllClubsActionPerformed
 
     /**

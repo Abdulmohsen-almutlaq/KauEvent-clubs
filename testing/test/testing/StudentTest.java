@@ -5,19 +5,19 @@ import org.junit.jupiter.api.Test;
 
 public class StudentTest {
 
-    private static final String VALID_KAU_ID = "2135011";
+    private static final String VALID_KAU_ID = "2135100";
     private static final String VALID_PASSWORD = "12345";
     private static final String INVALID_KAU_ID = "2135710";
     private static final String INVALID_PASSWORD = "1234";
 
-    private static final String TEST_ID = "2135011";
-    private static final String TEST_EVENT_NUM = "29";
-    private static final String TEST_EVENT_NAME = "a";
+    private static final String TEST_ID = "2135100";
+    private static final String TEST_EVENT_NUM = "2";
+    private static final String TEST_EVENT_NAME = "space";
     private static final String NON_EXISTING_EVENT_NUM = "99";
 
-    private static final String TEST_CLUB_CODE = "4";
-    private static final String EXISTING_CLUB_CODE = "4";
-    private static final String NON_EXISTING_CLUB_CODE = "9";
+    private static final String TEST_CLUB_CODE = "10";
+    private static final String EXISTING_CLUB_CODE = "10";
+    private static final String NON_EXISTING_CLUB_CODE = "99";
 
     @Test
     public void testValidateStudent() {

@@ -29,43 +29,60 @@ public class addUpdateDeleteEvent extends javax.swing.JFrame {
         initComponents();
         show_events();
     }
-
-    public ArrayList<event> eventList() {
+    
+    
+    
+    
+    
+    public ArrayList<event> eventList(){
         ArrayList<event> eventList = new ArrayList<>();
-        try {
-
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=KAU_Events_Clubs;user=sa;password=12345";
+         try{
+ 
+             
+             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            String url="jdbc:sqlserver://sleman20.database.windows.net:1433;database=KAU_EVENT_AZURE;user=CloudSA8549a509@sleman20;password={Break2020};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
             Connection con = DriverManager.getConnection(url);
-
-            String query1 = "SELECT * FROM eventBase";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query1);
+             
+             
+             
+             
+            String query1="SELECT * FROM eventBase";
+            Statement st= con.createStatement();
+            ResultSet rs= st.executeQuery(query1);
             event eventO;
-            while (rs.next()) {
-                eventO = new event(rs.getInt("eventNum"), rs.getString("eventName"), rs.getString("eventDescription"), rs.getDate("eventDate"), rs.getInt("Admin_ID"));
+            while(rs.next()){
+                eventO=new event(rs.getInt("eventNum"), rs.getString("eventName"), rs.getString("eventDescription"), rs.getDate("eventDate"),rs.getInt("Admin_ID"));
                 eventList.add(eventO);
             }
-        } catch (Exception e) {
+         }
+         catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-        return eventList;
+         return eventList;
     }
 
-    public void show_events() {
+    
+     public void show_events(){
         ArrayList<event> list = eventList();
-        DefaultTableModel model = (DefaultTableModel) AUDeventTable.getModel();
+        DefaultTableModel model = (DefaultTableModel)AUDeventTable.getModel();
         Object[] row = new Object[5];
-        for (int i = 0; i < list.size(); i++) {
-            row[0] = list.get(i).getEventNum();
-            row[1] = list.get(i).getEventName();
-            row[2] = list.get(i).getEventDescription();
-            row[3] = list.get(i).getEventDate();
-            row[4] = list.get(i).getAdmin_ID();
-
+        for(int i=0;i<list.size();i++){
+            row[0]=list.get(i).getEventNum();
+            row[1]=list.get(i).getEventName();
+            row[2]=list.get(i).getEventDescription();
+            row[3]=list.get(i).getEventDate();
+            row[4]=list.get(i).getAdmin_ID();
+     
             model.addRow(row);
-        }
-    }
+        }}
+    
+    
+    
+    
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,16 +106,20 @@ public class addUpdateDeleteEvent extends javax.swing.JFrame {
         updateEventButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         AUDeventTable = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Event name");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setText("Event description");
 
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setText("Event date ");
 
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setText("Admin ID");
 
         eventName.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +134,7 @@ public class addUpdateDeleteEvent extends javax.swing.JFrame {
             }
         });
 
+        addeventButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         addeventButton.setText("Add");
         addeventButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +142,7 @@ public class addUpdateDeleteEvent extends javax.swing.JFrame {
             }
         });
 
+        DeleteeventButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DeleteeventButton.setText("Delete");
         DeleteeventButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +150,7 @@ public class addUpdateDeleteEvent extends javax.swing.JFrame {
             }
         });
 
+        updateEventButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         updateEventButton.setText("Update ");
         updateEventButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,6 +158,7 @@ public class addUpdateDeleteEvent extends javax.swing.JFrame {
             }
         });
 
+        AUDeventTable.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         AUDeventTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -148,11 +173,19 @@ public class addUpdateDeleteEvent extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(AUDeventTable);
+        if (AUDeventTable.getColumnModel().getColumnCount() > 0) {
+            AUDeventTable.getColumnModel().getColumn(0).setHeaderValue("Event Number");
+            AUDeventTable.getColumnModel().getColumn(1).setHeaderValue("Event Name");
+            AUDeventTable.getColumnModel().getColumn(2).setHeaderValue("Event Description");
+            AUDeventTable.getColumnModel().getColumn(3).setHeaderValue("Event Date");
+            AUDeventTable.getColumnModel().getColumn(4).setHeaderValue("Added By");
+        }
 
-        jButton2.setText("Back");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
 
@@ -164,88 +197,106 @@ public class addUpdateDeleteEvent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(131, 131, 131)
-                                .addComponent(adminID, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(eventDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(117, 117, 117)
-                                    .addComponent(eventName, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(adminID)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(eventDescription, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(eventName, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(addeventButton)
-                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(addeventButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30)
                         .addComponent(updateEventButton)
                         .addGap(33, 33, 33)
-                        .addComponent(DeleteeventButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jButton2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1172, Short.MAX_VALUE)
-                .addGap(25, 25, 25))
+                        .addComponent(DeleteeventButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(eventName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(eventDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(eventName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(eventDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(adminID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(88, 88, 88)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(addeventButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DeleteeventButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(updateEventButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(249, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(adminID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(88, 88, 88)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addeventButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeleteeventButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateEventButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(backBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addeventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addeventButtonActionPerformed
-        Admin admin = new Admin();
-        boolean success = admin.insertEvent(eventName.getText(), eventDescription.getText(), jDateChooser1.getDate(), adminID.getText());
-
-        if (success) {
-            JOptionPane.showMessageDialog(null, "Event inserted successfully, thank you.");
-            DefaultTableModel model = (DefaultTableModel) AUDeventTable.getModel();
-            model.setRowCount(0);
-            show_events();
-        } else {
-            JOptionPane.showMessageDialog(null, "Event insertion failed.");
+       
+        
+        
+         try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            String url="jdbc:sqlserver://sleman20.database.windows.net:1433;database=KAU_EVENT_AZURE;user=CloudSA8549a509@sleman20;password={Break2020};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+            Connection con = DriverManager.getConnection(url);
+            String query="insert into eventBase (eventName,eventDescription,eventDate,Admin_ID)values(?,?,?,?)";
+            
+            
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, eventName.getText());
+            pst.setString(2, eventDescription.getText());
+           java.sql.Date d1 = new java.sql.Date( jDateChooser1.getDate().getTime());
+           pst.setDate(3,d1);
+           String sss=adminID.getText();
+           int ss=Integer.parseInt(sss);
+           pst.setInt(4, ss);
+           pst.executeUpdate();
+           JOptionPane.showMessageDialog(null, "Event inserted successfuly ,  thank you.");
+           
+            
+            
+            
+            
+         }
+             catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
         }
-
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_addeventButtonActionPerformed
 
     private void eventNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventNameActionPerformed
@@ -257,64 +308,122 @@ public class addUpdateDeleteEvent extends javax.swing.JFrame {
     }//GEN-LAST:event_eventDescriptionActionPerformed
 
     private void DeleteeventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteeventButtonActionPerformed
-        int row = AUDeventTable.getSelectedRow();
-        String value = AUDeventTable.getModel().getValueAt(row, 1).toString();
 
-        if (Admin.deleteEventFromDatabase(value)) {
-            JOptionPane.showMessageDialog(null, "Deleted Successfully!");
-            DefaultTableModel model = (DefaultTableModel) AUDeventTable.getModel();
+
+
+ try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            String url="jdbc:sqlserver://sleman20.database.windows.net:1433;database=KAU_EVENT_AZURE;user=CloudSA8549a509@sleman20;password={Break2020};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+            Connection con = DriverManager.getConnection(url);
+            int row= AUDeventTable.getSelectedRow();
+            String value=(AUDeventTable.getModel().getValueAt(row, 0).toString());
+            String query="DELETE FROM eventBase where eventNum="+value;
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.executeUpdate();
+            DefaultTableModel model = (DefaultTableModel)AUDeventTable.getModel();
             model.setRowCount(0);
             show_events();
-            // Deletion successful, perform any necessary UI updates or notifications
-            // You may also choose to log a success message or take additional actions
-        } else {
-            JOptionPane.showMessageDialog(null, "Not Deleted");
-            // Deletion failed, handle accordingly (e.g., show an error message)
-        }
-
+            JOptionPane.showMessageDialog(null,"Deleted Successfully!");
+          }
+          catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_DeleteeventButtonActionPerformed
 
     private void updateEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateEventButtonActionPerformed
 
-        int row = AUDeventTable.getSelectedRow();
-        String value = AUDeventTable.getModel().getValueAt(row, 1).toString();
+        
+         try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            String url="jdbc:sqlserver://sleman20.database.windows.net:1433;database=KAU_EVENT_AZURE;user=CloudSA8549a509@sleman20;password={Break2020};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+            Connection con = DriverManager.getConnection(url);
+       
+       int row= AUDeventTable.getSelectedRow();
+            String value=(AUDeventTable.getModel().getValueAt(row, 0).toString());
+            String query = "UPDATE eventBase SET  eventName=?,eventDescription=?,eventDate=?,Admin_ID=? where eventNum="+value;
+            
+           PreparedStatement pst = con.prepareStatement(query);
+           String sss=eventName.getText();
+           
+           pst.setString(1, sss);
+           pst.setString(2, eventDescription.getText());
+           java.sql.Date d1 = new java.sql.Date( jDateChooser1.getDate().getTime());
+           pst.setDate(3,d1);
+           pst.setString(4, adminID.getText());
 
-        String updatedEventName = eventName.getText();
-        String updatedEventDescription = eventDescription.getText();
-        java.util.Date updatedEventDate = jDateChooser1.getDate();
-        String updatedAdminID = adminID.getText();
-
-        if (Admin.updateEventInDatabase(value, updatedEventName, updatedEventDescription, updatedEventDate, updatedAdminID)) {
-            JOptionPane.showMessageDialog(null, "Updated Sucessfully!");
-            DefaultTableModel model = (DefaultTableModel) AUDeventTable.getModel();
+           pst.executeUpdate();
+            DefaultTableModel model = (DefaultTableModel)AUDeventTable.getModel();
             model.setRowCount(0);
-            show_events();
-            // Update successful, perform any necessary UI updates or notifications
-            // You may also choose to log a success message or take additional actions
-        } else {
-            JOptionPane.showMessageDialog(null, " NOT Updated Sucessfully!");
+           show_events();
+            JOptionPane.showMessageDialog(null, "Updated Sucessfully!");
+            
+            
+            
+       
+       }
+       
+       catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
         }
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_updateEventButtonActionPerformed
 
     private void AUDeventTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AUDeventTableMouseClicked
-
+        
+        
+        
+        
         int i = AUDeventTable.getSelectedRow();
-        TableModel model = AUDeventTable.getModel();
-        eventName.setText(model.getValueAt(i, 1).toString());
-        eventDescription.setText(model.getValueAt(i, 2).toString());
-
-        jDateChooser1.setDate((Date) model.getValueAt(i, 3));
-        adminID.setText(model.getValueAt(i, 4).toString());
-
-
+        TableModel model =AUDeventTable.getModel();
+        eventName.setText(model.getValueAt(i,1).toString());
+        eventDescription.setText(model.getValueAt(i,2).toString());
+        
+           jDateChooser1.setDate((Date) model.getValueAt(i,3));
+             adminID.setText(model.getValueAt(i,4).toString());  
+   
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_AUDeventTableMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        AdminFunctions field = new AdminFunctions();
-        field.setVisible(true);
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+
+        AdminFunctions Field =new AdminFunctions();
+        Field.setVisible(true);
         setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -357,9 +466,9 @@ public class addUpdateDeleteEvent extends javax.swing.JFrame {
     private javax.swing.JButton DeleteeventButton;
     private javax.swing.JButton addeventButton;
     private javax.swing.JTextField adminID;
+    private javax.swing.JButton backBtn;
     private javax.swing.JTextField eventDescription;
     private javax.swing.JTextField eventName;
-    private javax.swing.JButton jButton2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

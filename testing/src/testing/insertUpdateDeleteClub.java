@@ -31,42 +31,69 @@ public class insertUpdateDeleteClub extends javax.swing.JFrame {
         show_clubs();
     }
 
-    public ArrayList<club> clubList() {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public ArrayList<club> clubList(){
         ArrayList<club> clubList = new ArrayList<>();
-        try {
-
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=KAU_Events_Clubs;user=sa;password=12345";
+         try{
+ 
+             
+             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+           String url="jdbc:sqlserver://sleman20.database.windows.net:1433;database=KAU_EVENT_AZURE;user=CloudSA8549a509@sleman20;password={Break2020};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
             Connection con = DriverManager.getConnection(url);
-
-            String query1 = "SELECT * FROM clubBase";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query1);
+             
+             
+             
+             
+            String query1="SELECT * FROM clubBase";
+            Statement st= con.createStatement();
+            ResultSet rs= st.executeQuery(query1);
             club clubO;
-            while (rs.next()) {
-                clubO = new club(rs.getInt("clubCode"), rs.getString("clubName"), rs.getString("clubDescription"), rs.getDate("clubFounded"));
+            while(rs.next()){
+                clubO=new club(rs.getInt("clubCode"), rs.getString("clubName"), rs.getString("clubDescription"), rs.getDate("clubFounded"));
                 clubList.add(clubO);
             }
-        } catch (Exception e) {
+         }
+         catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-        return clubList;
+         return clubList;
     }
 
-    public void show_clubs() {
+    
+     public void show_clubs(){
         ArrayList<club> list = clubList();
-        DefaultTableModel model = (DefaultTableModel) clubTableAUD.getModel();
+        DefaultTableModel model = (DefaultTableModel)clubTableAUD.getModel();
         Object[] row = new Object[4];
-        for (int i = 0; i < list.size(); i++) {
-            row[0] = list.get(i).getClubCode();
-            row[1] = list.get(i).getClubName();
-            row[2] = list.get(i).getClubDescription();
-            row[3] = list.get(i).getClubFounded();
-
+        for(int i=0;i<list.size();i++){
+            row[0]=list.get(i).getClubCode();
+            row[1]=list.get(i).getClubName();
+            row[2]=list.get(i).getClubDescription();
+            row[3]=list.get(i).getClubFounded();
+     
             model.addRow(row);
         }
     }
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,9 +116,10 @@ public class insertUpdateDeleteClub extends javax.swing.JFrame {
         DeleteClubBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         clubTableAUD = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(950, 470));
 
         clubID.setFont(new java.awt.Font("Microsoft YaHei UI Light", 1, 14)); // NOI18N
         clubID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -152,6 +180,7 @@ public class insertUpdateDeleteClub extends javax.swing.JFrame {
             }
         });
 
+        clubTableAUD.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         clubTableAUD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -167,11 +196,11 @@ public class insertUpdateDeleteClub extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(clubTableAUD);
 
-        jButton1.setFont(new java.awt.Font("Yu Gothic Light", 1, 18)); // NOI18N
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
 
@@ -185,29 +214,29 @@ public class insertUpdateDeleteClub extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(club3)
-                            .addComponent(clubName, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(clubDate, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(clubNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(clubCodefield, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(club3)
+                                    .addComponent(clubName, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clubDate, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(47, 47, 47)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(clubNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clubCodefield, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(backBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                    .addComponent(AddClub, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(26, 26, 26)
+                                .addComponent(updateClub, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(DeleteClubBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AddClub, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
-                .addGap(34, 34, 34)
-                .addComponent(updateClub, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(DeleteClubBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,49 +259,56 @@ public class insertUpdateDeleteClub extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(clubDate, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(AddClub)
+                            .addComponent(updateClub)
+                            .addComponent(DeleteClubBtn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(backBtn)
+                        .addGap(8, 8, 8))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddClub)
-                    .addComponent(updateClub)
-                    .addComponent(DeleteClubBtn))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(172, 172, 172))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddClubActionPerformed
-        try {
-            // Get the required inputs
-            String clubCode = clubCodefield.getText();
-            String clubName = clubNameField.getText();
-            String clubDescription = jTextField3.getText();
-            // Convert java.util.Date to java.sql.Date
-            java.util.Date utilDate = jDateChooser2.getDate();
-            java.sql.Date clubFounded = new java.sql.Date(utilDate.getTime()); // Assuming jDateChooser2 returns a java.util.Date
+       
+         try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            String url="jdbc:sqlserver://sleman20.database.windows.net:1433;database=KAU_EVENT_AZURE;user=CloudSA8549a509@sleman20;password={Break2020};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+            Connection con = DriverManager.getConnection(url);
+            String query="insert into clubBase (clubCode,clubName,clubDescription,clubFounded)values(?,?,?,?)";
+         
+           PreparedStatement pst = con.prepareStatement(query);
+           String sss=clubCodefield.getText();
+           int ss=Integer.parseInt(sss);
+           pst.setInt(1, ss);
+           pst.setString(2, clubNameField.getText());
+           pst.setString(3, jTextField3.getText());
+           
 
-            // Create an instance of the Admin class
-            Admin admin = new Admin();
 
-            // Call the insertClub method
-            boolean success = admin.insertClub(clubCode, clubName, clubDescription, clubFounded);
-
-            if (success) {
-                JOptionPane.showMessageDialog(null, "Club inserted successfully, thank you.");
-            } else {
-                JOptionPane.showMessageDialog(null, "Failed to insert club.");
-            }
-        } catch (Exception e) {
+java.sql.Date d1 = new java.sql.Date( jDateChooser2.getDate().getTime());
+//java.sql.Date d1 ;d1=         (java.sql.Date) jDateChooser2.getDate();
+           pst.setDate(4,d1);
+           pst.executeUpdate();
+           show_clubs();
+           JOptionPane.showMessageDialog(null, "Club inserted successfuly ,   thank you.");
+         }
+            
+         catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-
-
+        
+        
+        
+        
     }//GEN-LAST:event_AddClubActionPerformed
 
     private void clubCodefieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clubCodefieldActionPerformed
@@ -280,85 +316,107 @@ public class insertUpdateDeleteClub extends javax.swing.JFrame {
     }//GEN-LAST:event_clubCodefieldActionPerformed
 
     private void updateClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateClubActionPerformed
-    try {
-        // Assuming you have an instance of the Admin class
-        Admin admin = new Admin();
-
-        // Get the selected row value from the table
-        int row = clubTableAUD.getSelectedRow();
-        String value = (clubTableAUD.getModel().getValueAt(row, 0).toString());
-
-        // Get the updated values from the form
-        int newClubCode = Integer.parseInt(clubCodefield.getText());
-        String clubName = clubNameField.getText();
-        String clubDescription = jTextField3.getText();
-        java.util.Date clubFounded = jDateChooser2.getDate();
-
-        // Call the updateClub method
-        boolean success = admin.updateClub(value, Integer.toString(newClubCode), clubName, clubDescription, (java.sql.Date) clubFounded);
-
-        if (success) {
-            JOptionPane.showMessageDialog(null, "Club updated successfully, thank you.");
-            // Refresh the table after updating
-            DefaultTableModel model = (DefaultTableModel) clubTableAUD.getModel();
+       try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            String url="jdbc:sqlserver://sleman20.database.windows.net:1433;database=KAU_EVENT_AZURE;user=CloudSA8549a509@sleman20;password={Break2020};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+            Connection con = DriverManager.getConnection(url);
+       
+       int row= clubTableAUD.getSelectedRow();
+            String value=(clubTableAUD.getModel().getValueAt(row, 0).toString());
+            String query = "UPDATE clubBase SET clubCode=?, clubName=?,clubDescription=?,clubFounded=? where clubCode="+value;
+            
+           PreparedStatement pst = con.prepareStatement(query);
+           String sss=clubCodefield.getText();
+           int ss=Integer.parseInt(sss);
+           pst.setInt(1, ss);
+           pst.setString(2, clubNameField.getText());
+           pst.setString(3, jTextField3.getText());
+           java.sql.Date d1 = new java.sql.Date( jDateChooser2.getDate().getTime());
+           pst.setDate(4,d1);
+           pst.executeUpdate();
+            DefaultTableModel model = (DefaultTableModel)clubTableAUD.getModel();
             model.setRowCount(0);
-            show_clubs();
-        } else {
-            JOptionPane.showMessageDialog(null, "Failed to update club.");
+           show_clubs();
+            JOptionPane.showMessageDialog(null, "Updated Sucessfully!");
+            
+            
+            
+       
+       }
+       
+       catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
         }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, e);
-    }
+        
+        
+        
+        
+        
     }//GEN-LAST:event_updateClubActionPerformed
 
     private void DeleteClubBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteClubBtnActionPerformed
-            try {
-        // Assuming you have an instance of the Admin class
-        Admin admin = new Admin();
-
-        // Get the selected row value from the table
-        int row = clubTableAUD.getSelectedRow();
-        String value = (clubTableAUD.getModel().getValueAt(row, 0).toString());
-
-        // Call the deleteClub method
-        boolean success = admin.deleteClub(value);
-
-        if (success) {
-            JOptionPane.showMessageDialog(null, "Club deleted successfully, thank you.");
-            // Refresh the table after deletion
-            DefaultTableModel model = (DefaultTableModel) clubTableAUD.getModel();
+      
+        
+        
+        try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+             String url="jdbc:sqlserver://sleman20.database.windows.net:1433;database=KAU_EVENT_AZURE;user=CloudSA8549a509@sleman20;password={Break2020};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+            Connection con = DriverManager.getConnection(url);
+            int row= clubTableAUD.getSelectedRow();
+            String value=(clubTableAUD.getModel().getValueAt(row, 0).toString());
+            String query="DELETE FROM clubBase where clubCode="+value;
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.executeUpdate();
+            DefaultTableModel model = (DefaultTableModel)clubTableAUD.getModel();
             model.setRowCount(0);
             show_clubs();
-        } else {
-            JOptionPane.showMessageDialog(null, "Failed to delete club.");
+            JOptionPane.showMessageDialog(null,"Deleted Successfully!");
+          }
+          catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
         }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, e);
-    }
+        
+        
+        
+        
+        
     }//GEN-LAST:event_DeleteClubBtnActionPerformed
 
     private void clubTableAUDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clubTableAUDMouseClicked
-
-        int i = clubTableAUD.getSelectedRow();
-        TableModel model = clubTableAUD.getModel();
-        clubCodefield.setText(model.getValueAt(i, 0).toString());
-        clubNameField.setText(model.getValueAt(i, 1).toString());
-        jTextField3.setText(model.getValueAt(i, 2).toString());
-        jDateChooser2.setDate((Date) model.getValueAt(i, 3));
-
-
+        
+        
+        
+        
+        
+         int i = clubTableAUD.getSelectedRow();
+        TableModel model =clubTableAUD.getModel();
+        clubCodefield.setText(model.getValueAt(i,0).toString());
+        clubNameField.setText(model.getValueAt(i,1).toString());
+        jTextField3.setText(model.getValueAt(i,2).toString());
+        jDateChooser2.setDate((Date) model.getValueAt(i,3));
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_clubTableAUDMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-        
-        AdminFunctions field =new AdminFunctions();
-     field.setVisible(true);
-     setVisible(false);
-        
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+      AdminFunctions Field =new AdminFunctions();
+      Field.setVisible(true);
+      setVisible(false);
+      
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,6 +457,7 @@ public class insertUpdateDeleteClub extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddClub;
     private javax.swing.JButton DeleteClubBtn;
+    private javax.swing.JButton backBtn;
     private javax.swing.JLabel club3;
     private javax.swing.JTextField clubCodefield;
     private javax.swing.JLabel clubDate;
@@ -406,7 +465,6 @@ public class insertUpdateDeleteClub extends javax.swing.JFrame {
     private javax.swing.JLabel clubName;
     private javax.swing.JTextField clubNameField;
     private javax.swing.JTable clubTableAUD;
-    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField3;

@@ -11,7 +11,7 @@ import java.util.Calendar;
 public class Student {
 
     private static final String JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=KAU_Events_Clubs;user=sa;password=12345";
+    private static final String DB_URL = "jdbc:sqlserver://sleman20.database.windows.net:1433;database=KAU_EVENT_AZURE;user=CloudSA8549a509@sleman20;password={Break2020};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
     private static String KAU_ID;
     private static String studentName;
     // Constructor
@@ -62,21 +62,21 @@ public class Student {
 
     public static boolean RegisterEventStudent(String ID, String eventNum, String eventName) {
         try (Connection con = DriverManager.getConnection(DB_URL)) {
-            java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-
-            String query = "INSERT INTO studentEvents (KAU_ID, eventNum, eventName) VALUES (?, ?, ?)";
+            String query = "INSERT INTO studentEvents(KAU_ID, eventNum, eventName) VALUES (?, ?, ?)";
 
             try (PreparedStatement pst = con.prepareStatement(query)) {
                 pst.setString(1, ID);
                 pst.setString(2, eventNum);
                 pst.setString(3, eventName);
                 pst.executeUpdate();
+
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error enrolling in event: " + e.getMessage());
             return false;
         }
+
     }
         public static boolean deleteEvent(String KAU_ID, String eventNum) {
         try (Connection con = DriverManager.getConnection(DB_URL)) {
